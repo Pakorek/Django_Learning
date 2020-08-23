@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def home(request):
-    return HttpResponse('<h1>Welcome Dude</h1>')
+    return render(request, 'blog/index.html')
 
 
 def date_actuelle(request):
