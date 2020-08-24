@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Welcome Dude</h1>
 
+    <a href="{% url 'add_article' %}">Ajouter un article</a>
+
     {% for article in articles %}
         <div class="article">
             <h3>{{ article.titre }}</h3>
