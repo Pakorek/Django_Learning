@@ -18,7 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
         # fieldset 1 : meta-info
         ('Général', {
             'classes': ['collapse', ],
-            'fields': ('titre', 'auteur', 'categorie')
+            'fields': ('titre', 'auteur', 'categorie', 'slug')
         }),
         # fieldset 2 : content
         ('Contenu de l\'article', {
@@ -36,6 +36,9 @@ class ArticleAdmin(admin.ModelAdmin):
 
     # En-tête de notre colonne
     apercu_contenu.short_description = 'Aperçu du contenu'
+
+    # Native JS script to create slug automatically
+    prepopulated_fields = {'slug': ('titre', ), }
 
 
 admin.site.register(Categorie)
