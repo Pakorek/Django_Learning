@@ -4,5 +4,16 @@
 
 {% block body %}
     <h1>Welcome Dude</h1>
-    <p><a href="{% url 'date' %}">Afficher la date actuelle</a></p>
+
+    {% for article in articles %}
+        <div class="article">
+            <h3>{{ article.titre }}</h3>
+            <p>{{ article.contenu|truncatewords_html:80 }}</p>
+            <p><a href="{% url 'show_article' article.id %}">Lire la suite</a></p>
+        </div>
+    {% empty %}
+        <p>Aucun Article</p>
+    {% endfor %}
+
+    <em><a href="{% url 'date' %}">Afficher la date actuelle</a></em>
 {% endblock %}
