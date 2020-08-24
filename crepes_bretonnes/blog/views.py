@@ -37,7 +37,7 @@ def edit_article(request, id):
     if form.is_valid():
         form.save()
 
-    return render(request, 'blog/edit_article.html', {'form': form})
+    return render(request, 'blog/edit_article.html', {'form': form, 'id': id})
 
 
 def show_article(request, id, slug):
