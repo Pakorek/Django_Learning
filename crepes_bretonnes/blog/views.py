@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from .models import Article
+from .forms import ContactForm
 
 
 def home(request):
@@ -11,6 +12,20 @@ def home(request):
 def show_article(request, id, slug):
     article = get_object_or_404(Article, id=id, slug=slug)
     return render(request, 'blog/show.html', {'article': article})
+
+
+def contact(request):
+    form = ContactForm(request.POST or None)
+    if form.is_valid():
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        _from = form.cleaned_data['_from']
+        copy = form.cleaned_data['copy']
+
+        # send email here
+        send = True
+
+    return render(request, 'blog/contact.html', locals())
 
 
 def date_actuelle(request):
