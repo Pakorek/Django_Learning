@@ -1,4 +1,5 @@
 from django import forms
+from .models import Article
 
 
 class ContactForm(forms.Form):
@@ -31,3 +32,9 @@ class ContactForm(forms.Form):
                                )
 
         return cleaned_data
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        exclude = {'date'}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Editer un article{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <form action="{% url 'blog_index' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Edit</button>
+        </form>
+    </section>
+{% endblock %}
