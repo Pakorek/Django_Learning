@@ -16,7 +16,9 @@
        {% endblock %}
    </nav>
    <section id="content">
-       {% block body %}{% endblock %}
+       {% block body %}
+           <a href="{% url 'blog_index' %}">Voir le blog</a>
+       {% endblock %}
    </section>
 <footer>&copy; Crêpes bretonnes</footer>
 </body>
