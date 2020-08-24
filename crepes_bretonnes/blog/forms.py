@@ -11,6 +11,7 @@ class ContactForm(forms.Form):
     # def clean_message(self):
     #     message = self.cleaned_data['message']
     #     if "pizza" in message:
+    #         # ici message d'erreur en haut du form
     #         raise forms.ValidationError("On ne veut pas entendre parler de pizza !")
     #
     #     return message
@@ -23,6 +24,7 @@ class ContactForm(forms.Form):
 
         if sujet and message:
             if "pizza" in sujet and "pizza" in message:
+                # ici message d'erreur au niveau des inputs
                 self.add_error("message",
                                "Vous parlez déjà de pizzas dans le sujet, "
                                "n'en parlez plus dans le message !"
