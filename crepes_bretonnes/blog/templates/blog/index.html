@@ -9,7 +9,7 @@
         <div class="article">
             <h3>{{ article.titre }}</h3>
             <p>{{ article.contenu|truncatewords_html:80 }}</p>
-            <p><a href="{% url 'show_article' article.id %}">Lire la suite</a></p>
+            <p><a href="{% url 'show_article' article.id article.slug %}">Lire la suite</a></p>
         </div>
     {% empty %}
         <p>Aucun Article</p>
