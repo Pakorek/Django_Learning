@@ -75,6 +75,11 @@ class ListArticles(ListView):
     context_object_name = "articles"
     template_name = "blog/index.html"
     paginate_by = 3
-    queryset = Article.objects.filter(categorie_id=1)
+    # not dynamic
+    # queryset = Article.objects.filter(categorie_id=1)
+
+    def get_queryset(self):
+        # return Article.objects.filter(categorie_id=self.args[0])
+        return Article.objects.filter(categorie_id=self.kwargs['id'])
 
 
