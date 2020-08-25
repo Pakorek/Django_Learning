@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView, ListView
+
 from datetime import datetime
 from .models import Article
 from .forms import ContactForm, ArticleForm
 
 
-def home(request):
-    articles = Article.objects.all()
-    return render(request, 'blog/index.html', {'articles': articles})
+# def home(request):
+#     articles = Article.objects.all()
+#     return render(request, 'blog/index.html', {'articles': articles})
 
 
 def add_article(request):
@@ -63,7 +65,16 @@ def date_actuelle(request):
     return render(request, 'blog/date.html', {'date': datetime.now()})
 
 
-def somme(request, nombre1, nombre2):
-    total = nombre1 + nombre2
+# def somme(request, nombre1, nombre2):
+#     total = nombre1 + nombre2
+#
+#     return render(request, 'blog/somme.html', locals())
 
-    return render(request, 'blog/somme.html', locals())
+class ListArticles(ListView):
+    model = Article
+    context_object_name = "articles"
+    template_name = "blog/index.html"
+    paginate_by = 3
+    queryset = Article.objects.filter(categorie_id=1)
+
+

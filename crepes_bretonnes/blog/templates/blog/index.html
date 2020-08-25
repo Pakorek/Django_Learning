@@ -17,5 +17,17 @@
         <p>Aucun Article</p>
     {% endfor %}
 
+    {% if is_paginated %}
+        <div class="pagination">
+           {% if page_obj.has_previous %}
+               <a href="?page={{ page_obj.previous_page_number }}">Précédente</a> —
+           {% endif %}
+           Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+           {% if page_obj.has_next %}
+              — <a href="?page={{ page_obj.next_page_number }}">Suivante</a>
+           {% endif %}
+        </div>
+    {% endif %}
+
     <em><a href="{% url 'date' %}">Afficher la date actuelle</a></em>
 {% endblock %}

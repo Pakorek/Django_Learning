@@ -1,11 +1,12 @@
 from django.urls import path
-from django.views.generic import TemplateView
-from . import views
+from django.views.generic import TemplateView, ListView
+from . import views, models
 
 
 urlpatterns = [
-    path('', views.home, name='blog_index'),
-    path(r'^faq$', TemplateView.as_view(template_name='blog/faq.html')),
+    path('', ListView.as_view(model=models.Article), name='blog_index'),
+    path('categorie/<int:id>', views.ListArticles.as_view(), name="show_by_categorie"),
+    path('faq/', TemplateView.as_view(template_name='blog/faq.html')),
     path('article/new', views.add_article, name="add_article"),
     path('article/edit/<int:id>', views.edit_article, name="edit_article"),
     path('article/<int:id>-<slug:slug>', views.show_article, name='show_article'),
