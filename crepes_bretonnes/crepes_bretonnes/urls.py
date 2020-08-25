@@ -21,4 +21,5 @@ urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('url/', include('MiniIURL.urls')),
 ]
