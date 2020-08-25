@@ -17,6 +17,12 @@
         <p>Aucun Article</p>
     {% endfor %}
 
+    <h3>Catégories disponibles</h3>
+
+    {% for category in categories %}
+        <li><a href="{% url 'show_by_category' category.id %}">{{ category.nom }}</a></li>
+    {% endfor %}
+
     {% if is_paginated %}
         <div class="pagination">
            {% if page_obj.has_previous %}
@@ -28,6 +34,8 @@
            {% endif %}
         </div>
     {% endif %}
+
+    {% print %}
 
     <em><a href="{% url 'date' %}">Afficher la date actuelle</a></em>
 {% endblock %}

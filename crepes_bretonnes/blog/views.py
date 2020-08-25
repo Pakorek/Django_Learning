@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 
 from datetime import datetime
-from .models import Article
+from .models import Article, Categorie
 from .forms import ContactForm, ArticleForm
 
 
@@ -75,11 +75,30 @@ class ListArticles(ListView):
     context_object_name = "articles"
     template_name = "blog/index.html"
     paginate_by = 3
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListArticles, self).get_context_data(**kwargs)
+        context['categories'] = Categorie.objects.all()
+        return context
+
+
+class ListArticlesByCategory(ListView):
+    model = Article
+    context_object_name = "articles"
+    template_name = "blog/index.html"
+    paginate_by = 3
     # not dynamic
     # queryset = Article.objects.filter(categorie_id=1)
 
     def get_queryset(self):
         # return Article.objects.filter(categorie_id=self.args[0])
         return Article.objects.filter(categorie_id=self.kwargs['id'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        # Nous récupérons le contexte depuis la super-classe
+        context = super(ListArticlesByCategory, self).get_context_data(**kwargs)
+        # Nous ajoutons la liste des catégories, sans filtre particulier
+        context['categories'] = Categorie.objects.all()
+        return context
 
 
