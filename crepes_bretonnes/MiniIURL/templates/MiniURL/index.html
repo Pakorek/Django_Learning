@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Liste des URLs{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <h1>Le raccourcisseur d'URLs</h1>
+
+        <a href="">Raccourcir une URL</a>
+
+    <p>Liste des URLs :</p>
+    <ul>
+        {% for URL in URLs %}
+            <li>
+                <p>{{ URL.url }} via <a href="http://{{ request.get_host }}{% url 'redirection' URL.mini_url %}">{{ request.get_host }}/{{ URL.mini_url }}</a> ({{ URL.nb_access }} accès)</p>
+            </li>
+        {% empty %}
+            Aucune URL pour l'instant
+        {% endfor %}
+    </ul>
+    </section>
+{% endblock %}
