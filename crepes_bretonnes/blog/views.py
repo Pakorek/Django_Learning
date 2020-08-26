@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from datetime import datetime
 from .models import Article, Categorie
@@ -42,9 +42,24 @@ def edit_article(request, id):
     return render(request, 'blog/edit_article.html', {'form': form, 'id': id})
 
 
-def show_article(request, id, slug):
-    article = get_object_or_404(Article, id=id, slug=slug)
-    return render(request, 'blog/show.html', {'article': article})
+# def show_article(request, id, slug):
+#     article = get_object_or_404(Article, id=id, slug=slug)
+#     return render(request, 'blog/show.html', {'article': article})
+
+class ShowArticle(DetailView):
+    model = Article
+    context_object_name = 'article'
+    template_name = 'blog/show.html'
+
+    # def get_object(self, queryset=None):
+    #     # get object with super-class
+    #     article = super(ShowArticle, self).get_object()
+    #     # imaginons un attribut Nb de vues
+    #     article.nb_vues += 1
+    #     article.save()
+    #     # request can be manip with self.request
+    #
+    #     return article
 
 
 def contact(request):
@@ -64,11 +79,6 @@ def contact(request):
 def date_actuelle(request):
     return render(request, 'blog/date.html', {'date': datetime.now()})
 
-
-# def somme(request, nombre1, nombre2):
-#     total = nombre1 + nombre2
-#
-#     return render(request, 'blog/somme.html', locals())
 
 class ListArticles(ListView):
     model = Article

@@ -4,7 +4,7 @@
 
 {% block body %}
     <section class="container">
-        <form action="{% url 'generate_url' %}" method="post">
+        <form action="" method="post">
             {{ form.as_p }}
             <button type="submit"value="Send"></button>
             {% csrf_token %}
