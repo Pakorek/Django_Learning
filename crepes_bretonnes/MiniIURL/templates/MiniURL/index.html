@@ -12,7 +12,8 @@
         {% for URL in URLs %}
             <li>
                 <p>{{ URL.url }} via <a href="http://{{ request.get_host }}{% url 'redirection' URL.mini_url %}">{{ request.get_host }}/{{ URL.mini_url }}</a> ({{ URL.nb_access }} accès)
-                    <a href="{% url 'update_url' URL.id %}">Edit</a>
+                    <a href="{% url 'update_url' URL.mini_url %}">Edit</a>
+                    <a href="{% url 'delete_url' URL.mini_url %}">Delete</a>
                 </p>
             </li>
         {% empty %}

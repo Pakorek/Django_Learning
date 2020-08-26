@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <section class="container">
+        <h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
+
+        <p>{{ mini_url.mini_url }} -&gt; {{ mini_url.url }} (créée le {{ mini_url.created_at|date:"DATE_FORMAT" }})</p>
+
+        <form method="post" action="">
+           {% csrf_token %}  <!-- Nous prenons bien soin d'ajouter le csrf_token -->
+           <input type="submit" value="Oui, supprime moi ça" /> - <a href="{% url "url_list" %}">Pas trop chaud en fait</a>
+        </form>
+    </section>
+{% endblock %}

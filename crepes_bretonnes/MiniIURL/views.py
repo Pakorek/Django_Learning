@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import MiniURL
@@ -26,6 +26,27 @@ class URLUpdate(UpdateView):
     template_name = 'MiniURL/new_url.html'
     form_class = URLGenForm
     success_url = reverse_lazy('url_list')
+
+    def get_object(self, queryset=None):
+        mini_url = self.kwargs.get('mini_url', None)
+        return get_object_or_404(MiniURL, mini_url=mini_url)
+
+    # def form_valid(self, form):
+    #     self.object = form.save()
+    #     # send mess to user
+    #     messages.success(self.request, "Votre profil a été mis à jour avec succès")
+    #     return HttpResponseRedirect(self.get_success_url())
+
+
+class URLDelete(DeleteView):
+    model = MiniURL
+    template_name = 'MiniURL/delete.html'
+    context_object_name = "mini_url"
+    success_url = reverse_lazy('url_list')
+
+    def get_object(self, queryset=None):
+        mini_url = self.kwargs.get('mini_url', None)
+        return get_object_or_404(MiniURL, mini_url=mini_url)
 
 
 def redirection(request, mini_url):
