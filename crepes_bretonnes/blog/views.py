@@ -80,11 +80,6 @@ def date_actuelle(request):
     return render(request, 'blog/date.html', {'date': datetime.now()})
 
 
-# def somme(request, nombre1, nombre2):
-#     total = nombre1 + nombre2
-#
-#     return render(request, 'blog/somme.html', locals())
-
 class ListArticles(ListView):
     model = Article
     context_object_name = "articles"

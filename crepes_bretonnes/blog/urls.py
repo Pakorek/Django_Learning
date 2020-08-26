@@ -12,5 +12,4 @@ urlpatterns = [
     path('article/<int:id>-<slug:slug>', views.ShowArticle.as_view(), name='show_article'),
     path('contact/', views.contact, name='contact'),
     path('date', views.date_actuelle, name='date'),
-    # path('somme/<int:nombre1>/<int:nombre2>/', views.somme, name='somme')
 ]
