@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 
 from .models import MiniURL
-
 from .forms import URLGenForm
 
 
@@ -16,6 +15,13 @@ from .forms import URLGenForm
 #     return render(request, 'MiniURL/new_url.html', {'form': form})
 
 class URLCreate(CreateView):
+    model = MiniURL
+    template_name = 'MiniURL/new_url.html'
+    form_class = URLGenForm
+    success_url = reverse_lazy('url_list')
+
+
+class URLUpdate(UpdateView):
     model = MiniURL
     template_name = 'MiniURL/new_url.html'
     form_class = URLGenForm

@@ -51,15 +51,15 @@ class ShowArticle(DetailView):
     context_object_name = 'article'
     template_name = 'blog/show.html'
 
-    def get_object(self, queryset=None):
-        # get object with super-class
-        article = super(ShowArticle, self).get_object()
-        # imaginons un attribut Nb de vues
-        article.nb_vues += 1
-        article.save()
-        # request can be manip with self.request
-
-        return article
+    # def get_object(self, queryset=None):
+    #     # get object with super-class
+    #     article = super(ShowArticle, self).get_object()
+    #     # imaginons un attribut Nb de vues
+    #     article.nb_vues += 1
+    #     article.save()
+    #     # request can be manip with self.request
+    #
+    #     return article
 
 
 def contact(request):
